@@ -104,18 +104,25 @@ public class Du3 {
     }
     public static int[] heapsort(int p[]){
         int[] heap = new int [p.length+1];
-        int j =1;
-        heap[1] = p[0];
-        for(int i = 2;i<p.length+1;i++){
+        int j =0;
+//        heap[1] = p[0];
+        for(int i = 1;i<p.length+1;i++){
             heap[i] = p[j];
             nahoru(heap,i);
             j++;
         }
+        for(int k = heap.length-1;k > 1;k--){
+            int m = heap[1];
+            heap[1] = heap[k];
+            heap[k] = m;  
+            dolu(heap,k);
+        }
+        
         return heap;    
     }
     public static void nahoru(int heap [],int i){
         while(i > 1){
-            if(heap[i/2] > heap[i]){
+            if(heap[i/2] < heap[i]){
                 int m = heap[i/2];
                 heap[i/2] = heap[i];
                 heap[i] = m;
@@ -125,10 +132,28 @@ public class Du3 {
                 break;
             }
         }
-//            if (heap[i/2] > heap[i+1]){
-//                int m = heap[i/2];
-//                heap[i/2] = heap[i+1];
-//                heap[i+1] = heap[i/2];               
-//            }
+    }
+    public static void dolu(int heap[],int k){
+        int index = 0;
+        int i = 1;
+        while((i*2)+1 < k){    
+            if(heap[i*2] < heap[(i*2)+1]){
+                index = (i*2)+1;
+            }
+            else {
+                index = i*2;
+            }
+            if(heap[i] < heap[index]){
+                    int m = heap[index];
+                    heap[index] = heap[i];
+                    heap[i] = m;
+            }
+            else {
+                break;
+            }
+            i = index;   
+
+        }
+        
     }
 }
