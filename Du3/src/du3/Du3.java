@@ -137,7 +137,7 @@ public class Du3 {
         int index = 0;
         int i = 1;
         while((i*2)+1 < k){    
-            if(heap[i*2] < heap[(i*2)+1]){
+            if(heap[i*2] < heap[i*2+1]){
                 index = (i*2)+1;
             }
             else {
@@ -151,8 +151,7 @@ public class Du3 {
             else {
                 break;
             }
-            i = index;   
-
+            i = index; 
         }
         
     }
