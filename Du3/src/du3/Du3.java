@@ -35,15 +35,15 @@ public class Du3 {
 //        System.out.format("\n");
         
 //        long tStart = System.nanoTime();
-        bubblesort(p);
+//        bubblesort(p);
 //        long tEnd = System.nanoTime();
 //        long tRes = tEnd - tStart;
 //        System.out.format("%d \n",tRes);
 
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
         
 //        Arrays.sort(p);
 //        for(int i =0;i<p.length;i++){
@@ -51,11 +51,11 @@ public class Du3 {
 //        }
 //        System.out.format("\n");
         
-//        int heap[] = heapsort(p);
-//        for(int i =1;i<heap.length;i++){
-//            System.out.format("%d ",heap[i]);
-//        }
-//        System.out.format("\n");
+        int heap[] = heapsort(p);
+        for(int i =1;i<heap.length;i++){
+            System.out.format("%d ",heap[i]);
+        }
+        System.out.format("\n");
         
     }
     public static void rnd(int k, int p[]){
@@ -104,8 +104,9 @@ public class Du3 {
     }
     public static int[] heapsort(int p[]){
         int[] heap = new int [p.length+1];
-        int j =0;
-        for(int i = 1;i<p.length+1;i++){
+        int j =1;
+        heap[1] = p[0];
+        for(int i = 2;i<p.length+1;i++){
             heap[i] = p[j];
             nahoru(heap,i);
             j++;
@@ -113,11 +114,17 @@ public class Du3 {
         return heap;    
     }
     public static void nahoru(int heap [],int i){
+        while(i > 1){
             if(heap[i/2] > heap[i]){
                 int m = heap[i/2];
                 heap[i/2] = heap[i];
                 heap[i] = m;
+                i = i/2;
             }
+            else{
+                break;
+            }
+        }
 //            if (heap[i/2] > heap[i+1]){
 //                int m = heap[i/2];
 //                heap[i/2] = heap[i+1];
