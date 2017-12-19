@@ -22,7 +22,13 @@ public class Du3 {
         int p [] = new int [(int) Math.pow(10,k)];
         rnd(k,p);     
 //      Arrays.sort(p);
-//      sortsetina(k,p);
+//      vstupsetina(k,p);
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
+        
+        selectsort(p);
         for(int i =0;i<p.length;i++){
             System.out.format("%d ",p[i]);
         }
@@ -32,10 +38,10 @@ public class Du3 {
     public static void rnd(int k, int p[]){
         Random numbers= new Random();
         for(int i =0;i<Math.pow(10,k);i++){
-            p[i] = numbers.nextInt();
+            p[i] = numbers.nextInt(100);
         }
     }
-    public static void sortsetina(int k,int p[]){
+    public static void vstupsetina(int k,int p[]){
         Arrays.sort(p);
         Random index = new Random();
         for(int i =0;i<p.length/100;i++){
@@ -44,6 +50,22 @@ public class Du3 {
             int a = p[in1];
             p[in1] = p[in2];
             p[in2] = a;
+        }
+    }
+    public static void selectsort(int p[]){
+        int min;
+        int h = 0;
+        for(int j =0;j < p.length;j++){
+            min = p[j];
+            for(int i = 0+j;i < p.length;i++){
+                if(min >= p[i]){
+                   min = p[i];
+                   h = i;
+                }
+            }
+            int m  = p[j];
+            p[j] = p[h];
+            p[h] = m; 
         }
     }
 }
