@@ -34,6 +34,17 @@ public class Du3 {
         }
         System.out.format("\n");
         
+        bubblesort(p);
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
+        Arrays.sort(p);
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
+        
     }
     public static void rnd(int k, int p[]){
         Random numbers= new Random();
@@ -66,6 +77,19 @@ public class Du3 {
             int m  = p[j];
             p[j] = p[h];
             p[h] = m; 
+        }
+    }
+    public static void bubblesort(int p[]){
+        for(int k= 0;k<p.length;k++){
+            int i = p.length-1;
+            while(i == 0+k){
+                if(p[i] < p[i-1]){
+                    int m = p[i];
+                    p[i] = p[i-1];
+                    p[i-1] = p[i];
+                }
+                i--;
+            }
         }
     }
 }
