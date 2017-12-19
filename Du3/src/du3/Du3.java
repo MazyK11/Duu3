@@ -28,11 +28,11 @@ public class Du3 {
         }
         System.out.format("\n");
         
-        selectsort(p);
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+//        selectsort(p);
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
         
 //        long tStart = System.nanoTime();
         bubblesort(p);
@@ -44,11 +44,18 @@ public class Du3 {
             System.out.format("%d ",p[i]);
         }
         System.out.format("\n");
-        Arrays.sort(p);
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+        
+//        Arrays.sort(p);
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
+        
+//        int heap[] = heapsort(p);
+//        for(int i =1;i<heap.length;i++){
+//            System.out.format("%d ",heap[i]);
+//        }
+//        System.out.format("\n");
         
     }
     public static void rnd(int k, int p[]){
@@ -86,15 +93,35 @@ public class Du3 {
     }
     public static void bubblesort(int p[]){
         for(int k= 0;k<p.length;k++){
-            int i = p.length-1;
-            while(i == 0+k){
+            for(int i = p.length-1; i > 0+k;i--){
                 if(p[i] < p[i-1]){
                     int m = p[i];
                     p[i] = p[i-1];
-                    p[i-1] = p[i];
+                    p[i-1] = m;
                 }
-                i--;
             }
         }
+    }
+    public static int[] heapsort(int p[]){
+        int[] heap = new int [p.length+1];
+        int j =0;
+        for(int i = 1;i<p.length+1;i++){
+            heap[i] = p[j];
+            nahoru(heap,i);
+            j++;
+        }
+        return heap;    
+    }
+    public static void nahoru(int heap [],int i){
+            if(heap[i/2] > heap[i]){
+                int m = heap[i/2];
+                heap[i/2] = heap[i];
+                heap[i] = m;
+            }
+//            if (heap[i/2] > heap[i+1]){
+//                int m = heap[i/2];
+//                heap[i/2] = heap[i+1];
+//                heap[i+1] = heap[i/2];               
+//            }
     }
 }
