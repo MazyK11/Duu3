@@ -19,7 +19,7 @@ public class Du3 {
      */
     public static void main(String[] args) {
         int k = 2;
-        int p [] = new int [(int) Math.pow(10,k)];
+        int p [] = new int [(int) Math.pow(10,2)];
         rnd(k,p);     
 //      Arrays.sort(p);
 //      vstupsetina(k,p);
@@ -34,7 +34,12 @@ public class Du3 {
         }
         System.out.format("\n");
         
+//        long tStart = System.nanoTime();
         bubblesort(p);
+//        long tEnd = System.nanoTime();
+//        long tRes = tEnd - tStart;
+//        System.out.format("%d \n",tRes);
+
         for(int i =0;i<p.length;i++){
             System.out.format("%d ",p[i]);
         }
