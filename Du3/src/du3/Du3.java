@@ -22,11 +22,12 @@ public class Du3 {
         int p [] = new int [(int) Math.pow(10,k)];
         rnd(k,p);     
 //      Arrays.sort(p);
-        sortsetina(k,p);
+//      sortsetina(k,p);
         for(int i =0;i<p.length;i++){
             System.out.format("%d ",p[i]);
         }
-
+        System.out.format("\n");
+        
     }
     public static void rnd(int k, int p[]){
         Random numbers= new Random();
