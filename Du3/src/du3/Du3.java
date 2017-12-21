@@ -58,13 +58,12 @@ public class Du3 {
 //        System.out.format("\n");
         int l = 0;
         int r = p.length-1;
-      
         quicksort(p,l,r);
-//
         for(int i =0;i<p.length;i++){
             System.out.format("%d ",p[i]);
         }
         System.out.format("\n");
+        
 
         
     }
@@ -166,19 +165,16 @@ public class Du3 {
         
     }
     public static void quicksort(int p[],int l, int r){
-        int pivot = (r-l)/2;
-        System.out.print(p[pivot]);
-        System.out.format("\n");
-        
+        int pivot = (r+l)/2;
         int i = l;
         int j = r;
-        for(int k = 0;k<pivot;k++){
-            for(;i<p.length;i++){
+        while(i<=j){
+            for(;i<pivot;i++){
                 if(p[i] > p[pivot]){
                     break;
                 }
             }
-            for(;0<j;j--) {    
+            for(;j>pivot;j--) {    
                 if(p[j] < p[pivot]){
                     break;
                 }
@@ -187,9 +183,15 @@ public class Du3 {
                 int m = p[i];
                 p[i] = p[j];
                 p[j] = m;
+                i++;
+                j--;
             }
-            i++;
-            j--;
+            if (l<j){
+                quicksort(p,l,j);
+            }
+            if(i<r){
+                quicksort(p,i,r);
+            } 
         }
     }
         
