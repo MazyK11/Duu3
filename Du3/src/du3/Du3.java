@@ -23,10 +23,10 @@ public class Du3 {
         rnd(k,p);     
 //      Arrays.sort(p);
 //      vstupsetina(k,p);
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
         
 //        selectsort(p);
 //        for(int i =0;i<p.length;i++){
@@ -35,15 +35,15 @@ public class Du3 {
 //        System.out.format("\n");
         
 //        long tStart = System.nanoTime();
-        bubblesort(p);
+//        bubblesort(p);
 //        long tEnd = System.nanoTime();
 //        long tRes = tEnd - tStart;
 //        System.out.format("%d \n",tRes);
 
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
         
 //        Arrays.sort(p);
 //        for(int i =0;i<p.length;i++){
@@ -56,24 +56,15 @@ public class Du3 {
 //            System.out.format("%d ",heap[i]);
 //        }
 //        System.out.format("\n");
-        int pivot = p.length/2;
-        int left [] =  new int [p.length];
-        int right [] = new int [p.length];
-        int j= pivot;
-        for(int i = 0;i<pivot;i++){
-            left[i] = p[i];
-            right[j] = p[pivot+i];
-            j++;
-        }
-        for(int i =0;i<left.length;i++){
-            System.out.format("%d ",left[i]);
+        int l = 0;
+        int r = p.length-1;
+        quicksort(p,l,r);
+
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
         }
         System.out.format("\n");
-        
-        for(int i =0;i<right.length;i++){
-            System.out.format("%d ",right[i]);
-        }
-        System.out.format("\n");
+
         
     }
     public static void rnd(int k, int p[]){
@@ -173,38 +164,36 @@ public class Du3 {
         }
         
     }
-    public static void quicksort(int p[], int pivot, int left[], int right[]){
-        int indexl = -1;
-        int indexr = -1;
-        if(left.length == 1){
-            return;
-        }
-        else{
-                int j = p.length-1;
-                for(int i = 0;i==j;i++){
-                    if(left[i] > p[pivot]){
-                        indexl = i;
-                        if(right[j] < pivot){
-                            int m = left[indexl]; 
-                            left[indexl] = right[indexr];
-                            right[indexr] = m;                            
-                        }
-                    }
-                    
-                    
-                    j--;
-                }
-//                for(int j = pivot-1;j>-1;j--){
-//                    if(right[j] < p[pivot]){
-//                        indexr = j;
-//                        break;
-//                    }
-//                }
+    public static void quicksort(int p[],int l, int r){
+        int pivot = (l-r)/2;
+        int i = l;
+        int j = r;
+        for(int k = 0;k<pivot;k++){
 
-                int m = left[indexl]; 
-                left[indexl] = right[indexr];
-                right[indexr] = m;
+            for(;i<pivot+1;i++){
+                if(p[i] > p[pivot]){
+                    l = i;
+                    break;
+                }
+            }
+            for(;j>pivot;j--) {    
+                if(p[j] < p[pivot]){
+                    r = j;
+                    break;
+                }
+            }
+            if(l == -1 || r == -1){
+
+            }
+            else {
+                int m = p[l];
+                p[l] = p[r];
+                p[r] = m;
+            }
         }
-        
+        quicksort(p,l,r);
+        quicksort(p,l,r);  
     }
+        
+ 
 }
