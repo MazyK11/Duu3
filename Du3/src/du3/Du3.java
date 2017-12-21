@@ -23,10 +23,10 @@ public class Du3 {
         rnd(k,p);     
 //      Arrays.sort(p);
 //      vstupsetina(k,p);
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
         
 //        selectsort(p);
 //        for(int i =0;i<p.length;i++){
@@ -35,15 +35,15 @@ public class Du3 {
 //        System.out.format("\n");
         
 //        long tStart = System.nanoTime();
-//        bubblesort(p);
+        bubblesort(p);
 //        long tEnd = System.nanoTime();
 //        long tRes = tEnd - tStart;
 //        System.out.format("%d \n",tRes);
 
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
         
 //        Arrays.sort(p);
 //        for(int i =0;i<p.length;i++){
@@ -51,9 +51,27 @@ public class Du3 {
 //        }
 //        System.out.format("\n");
         
-        int heap[] = heapsort(p);
-        for(int i =1;i<heap.length;i++){
-            System.out.format("%d ",heap[i]);
+//        int heap[] = heapsort(p);
+//        for(int i =1;i<heap.length;i++){
+//            System.out.format("%d ",heap[i]);
+//        }
+//        System.out.format("\n");
+        int pivot = p.length/2;
+        int left [] =  new int [p.length];
+        int right [] = new int [p.length];
+        int j= pivot;
+        for(int i = 0;i<pivot;i++){
+            left[i] = p[i];
+            right[j] = p[pivot+i];
+            j++;
+        }
+        for(int i =0;i<left.length;i++){
+            System.out.format("%d ",left[i]);
+        }
+        System.out.format("\n");
+        
+        for(int i =0;i<right.length;i++){
+            System.out.format("%d ",right[i]);
         }
         System.out.format("\n");
         
@@ -152,6 +170,40 @@ public class Du3 {
                 break;
             }
             i = index; 
+        }
+        
+    }
+    public static void quicksort(int p[], int pivot, int left[], int right[]){
+        int indexl = -1;
+        int indexr = -1;
+        if(left.length == 1){
+            return;
+        }
+        else{
+                int j = p.length-1;
+                for(int i = 0;i==j;i++){
+                    if(left[i] > p[pivot]){
+                        indexl = i;
+                        if(right[j] < pivot){
+                            int m = left[indexl]; 
+                            left[indexl] = right[indexr];
+                            right[indexr] = m;                            
+                        }
+                    }
+                    
+                    
+                    j--;
+                }
+//                for(int j = pivot-1;j>-1;j--){
+//                    if(right[j] < p[pivot]){
+//                        indexr = j;
+//                        break;
+//                    }
+//                }
+
+                int m = left[indexl]; 
+                left[indexl] = right[indexr];
+                right[indexr] = m;
         }
         
     }
