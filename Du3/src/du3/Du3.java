@@ -18,59 +18,56 @@ public class Du3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        int vstup = 0;
+        int sort = 4;
         int k = 2;
-        int p [] = new int [(int) Math.pow(10,2)];
-        rnd(k,p);     
-//      Arrays.sort(p);
-//      vstupsetina(k,p);
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
-        }
-        System.out.format("\n");
+        int p [] = new int [(int) Math.pow(10,6)];
         
-//        selectsort(p);
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
-        
-//        long tStart = System.nanoTime();
-//        bubblesort(p);
-//        long tEnd = System.nanoTime();
-//        long tRes = tEnd - tStart;
-//        System.out.format("%d \n",tRes);
+        rnd(k,p);
 
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
-        
-//        Arrays.sort(p);
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
-        
-//        int heap[] = heapsort(p);
-//        for(int i =1;i<heap.length;i++){
-//            System.out.format("%d ",heap[i]);
-//        }
-//        System.out.format("\n");
-        int l = 0;
-        int r = p.length-1;
-        quicksort(p,l,r);
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
+        if(vstup == 1){
+            Arrays.sort(p);      
         }
-        System.out.format("\n");
+        else if(vstup == 2){
+            vstupsetina(k,p);
+        }
         
-
-        
+        if(sort == 1){
+            long tStart = System.nanoTime();
+            selectsort(p);
+            long tEnd = System.nanoTime();
+            long tRes = tEnd - tStart;
+            System.out.format("%d \n",tRes);
+        }
+        else if(sort == 2){
+            long tStart = System.nanoTime();
+            bubblesort(p);
+            long tEnd = System.nanoTime();
+            long tRes = tEnd - tStart;
+            System.out.format("%d \n",tRes);
+        }
+        else if(sort == 3){
+            long tStart = System.nanoTime();
+            int heap [] = heapsort(p);        
+            long tEnd = System.nanoTime();
+            long tRes = tEnd - tStart;
+            System.out.format("%d \n",tRes);
+        }
+        else {
+            int l = 0;
+            int r = p.length-1;
+            long tStart = System.nanoTime();
+            quicksort(p,l,r);
+            long tEnd = System.nanoTime();
+            long tRes = tEnd - tStart;
+            System.out.format("%d \n",tRes);
+        }      
     }
     public static void rnd(int k, int p[]){
         Random numbers= new Random();
         for(int i =0;i<Math.pow(10,k);i++){
-            p[i] = numbers.nextInt(100);
+            p[i] = numbers.nextInt();
         }
     }
     public static void vstupsetina(int k,int p[]){
@@ -194,6 +191,4 @@ public class Du3 {
             } 
         }
     }
-        
- 
 }
