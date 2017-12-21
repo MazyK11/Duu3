@@ -28,11 +28,11 @@ public class Du3 {
         }
         System.out.format("\n");
         
-//        selectsort(p);
-//        for(int i =0;i<p.length;i++){
-//            System.out.format("%d ",p[i]);
-//        }
-//        System.out.format("\n");
+        selectsort(p);
+        for(int i =0;i<p.length;i++){
+            System.out.format("%d ",p[i]);
+        }
+        System.out.format("\n");
         
 //        long tStart = System.nanoTime();
 //        bubblesort(p);
@@ -58,12 +58,30 @@ public class Du3 {
 //        System.out.format("\n");
         int l = 0;
         int r = p.length-1;
-        quicksort(p,l,r);
-
-        for(int i =0;i<p.length;i++){
-            System.out.format("%d ",p[i]);
+        int left [] =  new int [p.length];
+        int right [] = new int [p.length];
+        int j = p.length-1;
+        for(int i = 0;i<(p.length)/2;i++){
+            left[i] = p[i];
+            right[j] = p[p.length-1-i];
+            j--;
+        }
+        for(int i =0;i<left.length;i++){
+            System.out.format("%d ",left[i]);
         }
         System.out.format("\n");
+
+        for(int i =0;i<right.length;i++){
+            System.out.format("%d ",right[i]);
+        }
+        System.out.format("\n");
+      
+        quicksort(p,l,r,left,right);
+//
+//        for(int i =0;i<p.length;i++){
+//            System.out.format("%d ",p[i]);
+//        }
+//        System.out.format("\n");
 
         
     }
@@ -164,35 +182,47 @@ public class Du3 {
         }
         
     }
-    public static void quicksort(int p[],int l, int r){
+    public static void quicksort(int p[],int l, int r,int left[], int right[]){
         int pivot = (l-r)/2;
+        int n =0;
+        int h =0;
         int i = l;
         int j = r;
+        int indexl = -1;
+        int indexr = -1;
         for(int k = 0;k<pivot;k++){
-
             for(;i<pivot+1;i++){
-                if(p[i] > p[pivot]){
-                    l = i;
+                if(left[i] > p[pivot]){
+                    indexl = i;
                     break;
                 }
             }
             for(;j>pivot;j--) {    
-                if(p[j] < p[pivot]){
-                    r = j;
+                if(right[j] < p[pivot]){
+                    indexr = j;
                     break;
                 }
             }
-            if(l == -1 || r == -1){
-
+            if(indexl == -1){
+                left[pivot+h] = left[pivot+h+1];
+                p[i] = left[pivot+h];
+                h++;
             }
-            else {
-                int m = p[l];
-                p[l] = p[r];
-                p[r] = m;
+            if(indexr == -1){
+                p[i] = right[pivot + n];
+                n--;
             }
+            int m = p[l];
+            p[l] = p[r];
+            p[r] = m;
+            
         }
-        quicksort(p,l,r);
-        quicksort(p,l,r);  
+        if(p[i] == 0){
+            quicksort(p,l,j,left,right);        
+        }
+        if(p[i] == 1){
+            quicksort(p,i,r,left,right);          
+        }
     }
         
  
