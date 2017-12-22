@@ -17,22 +17,32 @@ public class Du3 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) {      
+    /**Vytvoření proměnné vstup - proměnná, která přepíná mezi jednotlivými 
+    *  vstupy 
+    *  sort - přepíná mezi použitým třídícím algoritmem
+    *  k - exponent
+    *  pole p - pole do kterého se nahrají inty
+    */      
         int vstup = 0;
         int sort = 4;
         int k = 2;
-        int p [] = new int [(int) Math.pow(10,6)];
+        int p [] = new int [(int) Math.pow(10,k)];
         
         rnd(k,p);
-
+    /** Podmínka přepínající mezi nesetříděnými inty, setříděnými a setříděnými
+     * s jedním prohozem mezi náhodnými prvky
+     */
         if(vstup == 1){
             Arrays.sort(p);      
         }
         else if(vstup == 2){
             vstupsetina(k,p);
         }
-        
+    /** Podmínka, která přepíná třídící algortimy. 
+     *  Pro každý algoritmus je volána specifická funkce a dochází ke změření
+     * času v nanosekundách
+     */        
         if(sort == 1){
             long tStart = System.nanoTime();
             selectsort(p);
@@ -64,12 +74,20 @@ public class Du3 {
             System.out.format("%d \n",tRes);
         }      
     }
+     /** Funkce pro naplnění pole náhodnými integery
+     * @param k - exponent
+     * @param p - pole
+     */
     public static void rnd(int k, int p[]){
         Random numbers= new Random();
         for(int i =0;i<Math.pow(10,k);i++){
             p[i] = numbers.nextInt();
         }
     }
+     /** Funkce, která setřídí pole a náhodně prohodí 1% prvků
+     * @param k - exponent
+     * @param p - pole
+     */
     public static void vstupsetina(int k,int p[]){
         Arrays.sort(p);
         Random index = new Random();
@@ -81,6 +99,11 @@ public class Du3 {
             p[in2] = a;
         }
     }
+     /** Funkce, která provede algoritmus select sort
+     * @param p - pole
+     * setřídí vstupní pole pomocí hledání minima, které následně vymění s 
+     * prvním prvkem
+     */
     public static void selectsort(int p[]){
         int min;
         int h = 0;
@@ -97,6 +120,11 @@ public class Du3 {
             p[h] = m; 
         }
     }
+    /** Funkce, která provede algoritmus bubble sort
+     * @param p - pole
+     * setřídí vstupní pole pomocí porovnávání dvou sousedících prvků, nejmenší
+     * prvek se dostane na první místo. Začíná porovnávat od konce
+     */
     public static void bubblesort(int p[]){
         for(int k= 0;k<p.length;k++){
             for(int i = p.length-1; i > 0+k;i--){
@@ -108,15 +136,23 @@ public class Du3 {
             }
         }
     }
+    /** Funkce, která provede algoritmus heap sort
+     * @param p - pole
+     * setřídí vstupní pole pomocí porovnávání binárního stromu.
+     * funkce volá další 2 funkce, které jsou potřebné pro tento algoritmus
+     */
     public static int[] heapsort(int p[]){
         int[] heap = new int [p.length+1];
         int j =0;
-//        heap[1] = p[0];
+//      přidání prvku do pole a volání funkce nahoru - oprava prvku - posun
+//      nahoru pokud je větší než jeho rodič
         for(int i = 1;i<p.length+1;i++){
             heap[i] = p[j];
             nahoru(heap,i);
             j++;
         }
+//      záměna největšího prvku za list nejvíce vpravo
+//      volání funkce dolu - pohyb od kořene (vyměněný prvek) směrem dolu
         for(int k = heap.length-1;k > 1;k--){
             int m = heap[1];
             heap[1] = heap[k];
@@ -126,6 +162,12 @@ public class Du3 {
         
         return heap;    
     }
+     /** Pomocná funkce heap sortu
+     * @param heap - pole haldy
+     * @param i - index
+     * posouvá prvek směrem nahoru - v poli na menší index pokud je větší
+     * než jeho rodič 
+     */
     public static void nahoru(int heap [],int i){
         while(i > 1){
             if(heap[i/2] < heap[i]){
@@ -139,6 +181,13 @@ public class Du3 {
             }
         }
     }
+    /** Pomocná funkce heap sortu
+     * @param heap - pole haldy
+     * @param k - index
+     * posouvá prvek směrem dolu - v poli na větší index
+     * porovná velikost potomků, následně je ten větší porovnán s jeho rodičem
+     * pokud je větší, tak se vymění
+     */
     public static void dolu(int heap[],int k){
         int index = 0;
         int i = 1;
@@ -161,21 +210,33 @@ public class Du3 {
         }
         
     }
+    /** Funkce, která provede algoritmus quicksortu
+     * @param p - pole
+     * @param l - reprezentuje levou hranici pole
+     * @param r - reprezentuje pravou hranici pole
+     * setřídí pole na základě prohazování prvků na velké vzdálenosti.
+     * Po zvolení pivota, se prvky přehází tak, aby nalevo od něj byly menší
+     * a napravo od něj větší. Následně je každá část rozdělena a znovu
+     * setříděna dokud nezbyde jeden prvek.
+     */
     public static void quicksort(int p[],int l, int r){
         int pivot = (r+l)/2;
         int i = l;
         int j = r;
         while(i<=j){
+//          najde prvek z leva, který je větší než pivot
             for(;i<pivot;i++){
                 if(p[i] > p[pivot]){
                     break;
                 }
             }
+//          najde prvek zprava, který je menší než pivot
             for(;j>pivot;j--) {    
                 if(p[j] < p[pivot]){
                     break;
                 }
             }
+//          prohodí prvky
             if(i<=j){
                 int m = p[i];
                 p[i] = p[j];
@@ -183,9 +244,11 @@ public class Du3 {
                 i++;
                 j--;
             }
+//          rekurzivní volání pro levou stranu
             if (l<j){
                 quicksort(p,l,j);
             }
+//          rekurzivní volání pro pravou stranu
             if(i<r){
                 quicksort(p,i,r);
             } 
